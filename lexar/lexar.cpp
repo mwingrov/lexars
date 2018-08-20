@@ -6,7 +6,7 @@
 /*   By: mwingrov <mwingrov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 01:18:05 by mwingrov          #+#    #+#             */
-/*   Updated: 2018/08/10 01:46:28 by mwingrov         ###   ########.fr       */
+/*   Updated: 2018/08/20 04:52:30 by mwingrov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ strings Lexar::lex(std::string str)
                         i++;
                         j++;
                     }
-                    state = READBLOK;
+                    state = READBLOCK;
                 }
                 else if (str[i] == '/' && str[i + 1] == '/')
                 {
@@ -69,7 +69,7 @@ strings Lexar::lex(std::string str)
                         j++;
                         i++;
                     }
-                    state = READBLOK;
+                    state = READBLOCK;
                 }
                 else if (isSpecial(str[i]))
                 {
@@ -93,7 +93,7 @@ strings Lexar::lex(std::string str)
                     i++;
                 }
                 break;
-            case READBLOK:
+            case READBLOCK:
                 if (str[i] == beg_char && str[i] != '"')
                 {
                     balance++;
@@ -135,7 +135,7 @@ strings Lexar::lex(std::string str)
                 }
                 break;
             case DUMP:
-                if (j < 0)
+                if (j > 0)
                 {
                     lexeme[j] = '\0';
                     strlst.push_back(lexeme);
@@ -164,4 +164,50 @@ strings Lexar::lex(std::string str)
         strlst.push_back(lexeme);
     }
     return (strlst);
+}
+
+bool    Lexar::my_isSpace(char c)
+{
+    switch(c)
+    {
+        case '\n':
+        case '\r':
+        case '\t':
+        case '\v':
+        case ' ':
+        case '\f':
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool    Lexar::isGroupe(char c)
+{
+    beg_char = c;
+    switch(c)
+    {
+        case '"':
+            end_char = '"';
+            return true;
+        case '(':
+            end_char = ')';
+            return true;
+        case ')':
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool    Lexar::isSpecial(char c)
+{
+    switch(c)
+    {
+        case '[':
+        case ']':
+            return true;
+        default:
+            return false;
+    }
 }

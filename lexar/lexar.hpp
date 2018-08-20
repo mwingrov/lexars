@@ -6,7 +6,7 @@
 /*   By: mwingrov <mwingrov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/10 01:09:31 by mwingrov          #+#    #+#             */
-/*   Updated: 2018/08/10 01:27:34 by mwingrov         ###   ########.fr       */
+/*   Updated: 2018/08/20 04:25:55 by mwingrov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ enum State : byte
 {
     START,
     READCHAR,
-    READBLOK,
+    READBLOCK,
     SKIP,
     DUMP,
     COMMENT,

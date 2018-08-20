@@ -6,7 +6,7 @@
 /*   By: mwingrov <mwingrov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/09 20:57:49 by mwingrov          #+#    #+#             */
-/*   Updated: 2018/08/10 00:15:10 by mwingrov         ###   ########.fr       */
+/*   Updated: 2018/08/20 04:12:55 by mwingrov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STACK_HPP
 
 # include <iostream>
+# include <fstream>
 # include <vector>
 
 typedef int32_t i32;

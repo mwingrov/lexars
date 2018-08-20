@@ -5,23 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mwingrov <mwingrov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/08/20 05:08:10 by mwingrov          #+#    #+#              #
-#    Updated: 2018/08/20 05:08:12 by mwingrov         ###   ########.fr        #
+#    Created: 2018/08/20 05:19:53 by mwingrov          #+#    #+#              #
+#    Updated: 2018/08/20 05:22:23 by mwingrov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS= -std=c++11
 
-all: stack
+CFLAGS=-std=c++11
 
-stack: stack.o main.o
-	$(CXX) $(CFLAGS) stack.o main.o -o stack
+all: sasm 
 
-main.o: main.cpp
-	$(CXX) $(CFLAGS) -c main.cpp
+sasm: sasm.o lexar.o
+	$(CXX) $(CFLAGS) sasm.o lexar.o -o $@
 
-stack.o: stack.hpp stack.cpp
-	$(CXX) $(CFLAGS) -c stack.cpp
+lexar.o: lexar.hpp lexar.cpp
+	$(CXX) $(CFLAGS) -c lexar.cpp
+
+sasm.o: lexar.hpp sasm.cpp
+	$(CXX) $(CFLAGS) -c sasm.cpp
 
 clean:
-	rm -f *.o stack
+	rm -f sasm *.o *.bin

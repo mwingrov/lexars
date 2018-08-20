@@ -5,21 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwingrov <mwingrov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/09 21:25:36 by mwingrov          #+#    #+#             */
-/*   Updated: 2018/08/10 00:17:46 by mwingrov         ###   ########.fr       */
+/*   Created: 2018/08/20 04:54:02 by mwingrov          #+#    #+#             */
+/*   Updated: 2018/08/20 05:05:21 by mwingrov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.hpp"
+#include "stack.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    stack   vm;
-    std::vector<i32> prog
+    if (ac < 2)
     {
-        3, 4, 0x40000001, 5, 0x40000002, 3, 0x40000003, 2, 0x40000004, 0x40000000
+        std::cout << "Error: " << av[0] << " <File> Invalid!" << std::endl;
+        return (0);
+    }
+
+    std::ifstream   r(av[1], std::ios::binary);
+    i32             i;
+    std::vector<i32> prog;
+    while (r.read((char *) &i, sizeof(i)))
+    {
+        prog.push_back(i);
     };
 
+    stack   vm;
     vm.loadProgram(prog);
     vm.run();
     return (0);
